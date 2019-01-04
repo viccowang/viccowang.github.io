@@ -3,15 +3,19 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Vicco&#39;s Blog</title>
+  <title>React - Redux 学习之Redux-thunk &amp; applyMiddleware | Vicco&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Vicco&#39;s Blog">
-<meta property="og:url" content="http://viccowang.github.io/index.html">
+  <meta name="description" content="在之前的练习中,我们一直在使用同步的方式进行状态管理, 那么在Redux中,我么如何使用异步的方式进行状态更新呢?这里需要用到Redux的中间件applyMiddelware 和 redux-thunk: 首先,我们应该在创建Store的时候注入中间件 12345678import &amp;#123; createStore, applyMiddleware &amp;#125; from &apos;redux&apos;imp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React - Redux 学习之Redux-thunk &amp; applyMiddleware">
+<meta property="og:url" content="http://viccowang.github.io/2019/01/04/react-redux-container-components-and-performance-component/index.html">
 <meta property="og:site_name" content="Vicco&#39;s Blog">
+<meta property="og:description" content="在之前的练习中,我们一直在使用同步的方式进行状态管理, 那么在Redux中,我么如何使用异步的方式进行状态更新呢?这里需要用到Redux的中间件applyMiddelware 和 redux-thunk: 首先,我们应该在创建Store的时候注入中间件 12345678import &amp;#123; createStore, applyMiddleware &amp;#125; from &apos;redux&apos;imp">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-04T14:23:54.222Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vicco&#39;s Blog">
+<meta name="twitter:title" content="React - Redux 学习之Redux-thunk &amp; applyMiddleware">
+<meta name="twitter:description" content="在之前的练习中,我们一直在使用同步的方式进行状态管理, 那么在Redux中,我么如何使用异步的方式进行状态更新呢?这里需要用到Redux的中间件applyMiddelware 和 redux-thunk: 首先,我们应该在创建Store的时候注入中间件 12345678import &amp;#123; createStore, applyMiddleware &amp;#125; from &apos;redux&apos;imp">
   
   
     <link rel="icon" href="/favicon.png">
@@ -91,64 +95,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-
-    
-    <article id="post-react-redux-study-redux-saga" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/04/react-redux-study-redux-saga/" class="article-date">
-  <time datetime="2019-01-04T14:26:34.000Z" itemprop="datePublished">2019-01-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/04/react-redux-study-redux-saga/">react-redux-study-redux-saga</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先,这个<strong>redux-saga</strong>和redux-thunk做的是同样的事情, 就是解决我们在<strong>redux</strong>中做异步的事情. 但 <strong>redux-saga </strong> 所涉及到的知识点和代码的复杂程度上都要复杂一些.</p>
-<blockquote>
-<p>redux-saga 是基于ES6 的 <strong>Generator</strong>来实现的异步请求数据.</p>
-</blockquote>
-<p>这是一个<strong>Generator</strong>例如:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">g</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> res = <span class="keyword">yield</span> <span class="number">1</span> + <span class="number">2</span></span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以上就是一个用同步方式来实现异步请求的<strong>Generator</strong> 函数. 更多的需要参考其文档. 这里就吧赘述了,因为我们的目的是记录学习 <strong>Redux-saga</strong>在<strong>react</strong>中的应用.</p>
-<p>那么,我们如何使用Redux-saga来实现异步数据的交互呢? 这里我们列举一个完整的使用<strong>Reudx-saga</strong>来构建我们之前<strong>TodoList</strong>中数据获取部分的代码</p>
-<p>首先,我们需要创建一个<strong>saga</strong>目录,用于存储我们的<strong>saga generator</strong>函数,具体代码内容贴如下:</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/04/react-redux-study-redux-saga/#more">() =&gt; { read more }</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://viccowang.github.io/2019/01/04/react-redux-study-redux-saga/" data-id="cjqi52wpi0001nwj6u1av5p2k" class="article-share-link">Share</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-
-    
-    <article id="post-react-redux-container-components-and-performance-component" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-react-redux-container-components-and-performance-component" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/04/react-redux-container-components-and-performance-component/" class="article-date">
   <time datetime="2019-01-04T13:58:43.000Z" itemprop="datePublished">2019-01-04</time>
@@ -161,8 +108,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/04/react-redux-container-components-and-performance-component/">React - Redux 学习之Redux-thunk &amp; applyMiddleware</a>
+    <h1 class="article-title" itemprop="name">
+      React - Redux 学习之Redux-thunk &amp; applyMiddleware
     </h1>
   
 
@@ -176,11 +123,12 @@
 <p>这里根据文档,我们知道<strong>thunk</strong> 这个东西可以将我们的<strong>Action Object</strong> 转为 <strong>function</strong> </p>
 <p>例如:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = <span class="number">1</span> + <span class="number">2</span></span><br><span class="line"><span class="comment">// 转换为, 这时的foo就被称作一个thunk</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="params">()</span> =&gt;</span> <span class="number">1</span> + <span class="number">2</span></span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/04/react-redux-container-components-and-performance-component/#more">() =&gt; { read more }</a>
-          </p>
-        
+<a id="more"></a>
+<p>以下是React的例子:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原有的Action</span></span><br><span class="line"><span class="keyword">const</span> increament = <span class="function">(<span class="params">id</span>) =&gt;</span> (&#123;</span><br><span class="line">	type: <span class="string">'INCREAMENT'</span>,</span><br><span class="line">	counter: counter++</span><br><span class="line">	id</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//////////////////////////////////////////</span></span><br><span class="line"><span class="comment">// 当我们请求之前可以先执行该Action, 比如可以触发Loading的操作</span></span><br><span class="line"><span class="keyword">const</span> requestAction = <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</span><br><span class="line">	type: <span class="string">'REQUEST_ACTION'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结束后我们触发一个Action 来重置操作,获取数据等</span></span><br><span class="line"><span class="keyword">const</span> receiveAction = <span class="function">(<span class="params">data</span>) =&gt;</span> (&#123;</span><br><span class="line">	type: <span class="string">'RECEIVE_ACTION'</span>,</span><br><span class="line">	data</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 可以进行异步操作了</span></span><br><span class="line"><span class="keyword">const</span> increament = <span class="function"><span class="params">()</span> =&gt;</span> (dispatch, getState) =&gt; &#123;</span><br><span class="line">	dispatch(requestAction())</span><br><span class="line">	<span class="keyword">return</span> fetch(<span class="string">'.someUrl'</span>).then(</span><br><span class="line">		res =&gt; dispatch(receiveAction(res))</span><br><span class="line">	)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如上的第一段代码,是我们原有的<code>Action</code>,在通过中间件的处理后,我们的<code>Action</code>可以写成一个<code>Function</code>了,我们即可以配合类似Axios等来做一些异步的数据处理了.</p>
+<p>当然,这只是最简单的例子, 我们可以以后再学习一些复杂的实战应用.</p>
+<p>目前我们只是使用中间件模拟获取了远程的TodoList数据罢了~~ :P</p>
+
       
     </div>
     <footer class="article-footer">
@@ -192,12 +140,24 @@
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/04/react-redux-study-redux-saga/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          react-redux-study-redux-saga
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
 </article>
 
-
-    
-  
-  
 </section>
         
       </div>
