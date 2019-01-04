@@ -122,6 +122,7 @@ html,
 body,
 #container {
   height: 100%;
+  font-size: 110%;
 }
 body {
   background: #fff;
