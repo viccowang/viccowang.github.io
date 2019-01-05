@@ -140,25 +140,27 @@
 
 
 
-  <meta name="description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径">
-<meta name="keywords" content="vue,打包,资源路径">
+  <meta name="description" content="&amp;emsp;&amp;emsp;都9102年了，又不经意的过去了一千年，回想8102年，真实感慨良多。不知道为什么，最近很喜欢听钢琴曲和大提琴，尤其是夜深人静独处的时候，总爱用手机放一首肖邦的夜曲Nocturne op. 9 no 1 Bb min，亦或者是巴赫的G大调 Cello Suite No. 1 in G Major, BWV 1007, 然后不停的循环，循环，再循环，一直到睡意降临。">
+<meta name="keywords" content="过去,生活,日记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="快速解决Vue项目打包样式中静态资源路径问题">
-<meta property="og:url" content="http://viccowang.github.io/2018/12/25/resolve-webpack-image-url-problems-in-vuejs/index.html">
+<meta property="og:title" content="在2019年的早些时候，追忆一下过去的2018">
+<meta property="og:url" content="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/index.html">
 <meta property="og:site_name" content="Vicco&#39;s Blog">
-<meta property="og:description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;都9102年了，又不经意的过去了一千年，回想8102年，真实感慨良多。不知道为什么，最近很喜欢听钢琴曲和大提琴，尤其是夜深人静独处的时候，总爱用手机放一首肖邦的夜曲Nocturne op. 9 no 1 Bb min，亦或者是巴赫的G大调 Cello Suite No. 1 in G Major, BWV 1007, 然后不停的循环，循环，再循环，一直到睡意降临。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-05T12:58:48.873Z">
+<meta property="og:image" content="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/01.jpg">
+<meta property="og:updated_time" content="2019-01-05T15:54:04.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="快速解决Vue项目打包样式中静态资源路径问题">
-<meta name="twitter:description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径">
+<meta name="twitter:title" content="在2019年的早些时候，追忆一下过去的2018">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;都9102年了，又不经意的过去了一千年，回想8102年，真实感慨良多。不知道为什么，最近很喜欢听钢琴曲和大提琴，尤其是夜深人静独处的时候，总爱用手机放一首肖邦的夜曲Nocturne op. 9 no 1 Bb min，亦或者是巴赫的G大调 Cello Suite No. 1 in G Major, BWV 1007, 然后不停的循环，循环，再循环，一直到睡意降临。">
+<meta name="twitter:image" content="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/01.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://viccowang.github.io/2018/12/25/resolve-webpack-image-url-problems-in-vuejs/">
+  <link rel="canonical" href="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/">
 
 
 
@@ -168,7 +170,7 @@
   };
 </script>
 
-  <title>快速解决Vue项目打包样式中静态资源路径问题 | Vicco's Blog</title>
+  <title>在2019年的早些时候，追忆一下过去的2018 | Vicco's Blog</title>
   
 
 
@@ -381,7 +383,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://viccowang.github.io/2018/12/25/resolve-webpack-image-url-problems-in-vuejs/">
+    <link itemprop="mainEntityOfPage" href="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vicco Wang">
@@ -398,7 +400,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">快速解决Vue项目打包样式中静态资源路径问题
+          <h1 class="post-title" itemprop="name headline">在2019年的早些时候，追忆一下过去的2018
 
               
             
@@ -424,7 +426,7 @@
                 
               
 
-              <time title="创建时间：2018-12-25 11:40:39" itemprop="dateCreated datePublished" datetime="2018-12-25T11:40:39+08:00">2018-12-25</time>
+              <time title="创建时间：2019-01-05 23:20:06" itemprop="dateCreated datePublished" datetime="2019-01-05T23:20:06+08:00">2019-01-05</time>
             
 
             
@@ -442,7 +444,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/关于生活/" itemprop="url" rel="index"><span itemprop="name">关于生活</span></a></span>
 
                 
                 
@@ -457,8 +459,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/25/resolve-webpack-image-url-problems-in-vuejs/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/25/resolve-webpack-image-url-problems-in-vuejs/" itemprop="commentCount"></span>
+                <a href="/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -493,35 +495,23 @@
       
 
       
-        <p>最近在使用基于<strong>Vue-cli</strong>构建的项目中,使用<strong>Webpack</strong>打包时,在样式表中引入的<strong>background-image</strong>路径,在生产环境无法显示.</p>
-<p>导致该问题是因为:</p>
-<ol>
-<li>生产环境路径与开发环境不一致</li>
-<li>生产打包后,样式中的相对路径由<strong>webpack</strong>变为了绝对路径</li>
-</ol>
+        <p><img src="/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/01.jpg" alt="2019"></p>
+<p>&emsp;&emsp;都9102年了，又不经意的过去了一千年，回想8102年，真实感慨良多。不知道为什么，最近很喜欢听钢琴曲和大提琴，尤其是夜深人静独处的时候，总爱用手机放一首肖邦的夜曲<code>Nocturne op. 9 no 1 Bb min</code>，亦或者是巴赫的G大调 <code>Cello Suite No. 1 in G Major, BWV 1007</code>, 然后不停的循环，循环，再循环，一直到睡意降临。</p>
 <a id="more"></a>
-<p>举个栗子:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">1116px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">554px</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'../../assets/images/timg.gif'</span>) no-repeat;</span><br><span class="line">    <span class="attribute">background-size</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>我们上面直接引用了相对路径. 在生产打包后,会变成绝对路径.</p>
-</blockquote>
-<p><strong>通用Webpack修正办法</strong>:</p>
-<blockquote>
-<p>该办法适用于所有基于<strong>Webpack</strong>打包的情况。<br>我们在构建独立样式时，会使用<strong>extract-text-webpack-plugin</strong>插件。该插件可以将样式在打包后生产独立的样式表文件。<br>我们只需要为其添加一个属性<strong><strong>publicPath: ‘../../‘ </strong></strong>即可(因为我们这里只针对样式表中的相对静态文件资源)</p>
-</blockquote>
-<blockquote>
-<p><strong>注意：该路径需要根据不同框架来判断， <strong>webpack</strong>在<strong>Vue</strong>项目打包后的样式表<strong>css</strong>和<strong>static</strong>之间相差两级路径。因此这里配置了两级路径</strong></p>
-</blockquote>
-<p><strong>在Vue-cli构建的项目中修正:</strong></p>
-<blockquote>
-<p>在<strong>build / utils.js </strong>目录中找到 修改如下：</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> ExtractTextPlugin.extract(&#123;</span><br><span class="line">       use: loaders,</span><br><span class="line">       fallback: <span class="string">'vue-style-loader'</span>,</span><br><span class="line">       <span class="comment">// 添加该路径</span></span><br><span class="line">       publicPath: <span class="string">'../../'</span></span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>大功告成！:-P</p>
-</blockquote>
-<hr>
-<p>另： 我们如果在<strong>template</strong>中定义的路径，如果引入的静态文件在<strong>assets</strong>中，将会自动转为<strong>BASE64</strong>，因此我们在模板中的引入我们无需处理。</p>
+<h3 id="对于工作"><a href="#对于工作" class="headerlink" title="对于工作"></a>对于工作</h3><p>&emsp;&emsp;对于去年的工作来说，似乎没什么特别快速的进展。要说技术进步，我觉得还是在大厂呆着进步会快得多。本来前年年末为公司把<code>Angular</code>框架收拾完成后学习<code>React</code>，但没想到公司需要对前端进行转型。我又神不知鬼不觉的为公司考虑,说到其实 公司应该尽快完成前后端分离的工作, 结果就是自己要重新根据业务情况搭一套东西出来,用于满足我提到的前后端分离的需求.(其实,到年末来看,分离的并不彻底, 主要就是…人手不够)…</p>
+<p>&emsp;&emsp;最后,考虑到后期会有一众前端或者后端人员来参与前端工作（人手不够，后端来凑不是常有的事儿吗？），所以选型了<code>VueJS</code>. 最重要就是学的快,上手快.</p>
+<p>&emsp;&emsp;后面因为项目多,所以为公司搭建了一个不是很完整,细节处理也不好,但可以适用大部分业务场景的一套框架.<a href="https://github.com/viccowang/zhx-vue-platform" target="_blank" rel="noopener">点这里可以跳转查看</a>, 文档没有上传,实在是懒.</p>
+<p>&emsp;&emsp;再到后面,就是往复这样那样的项目,其中又做了一套基于微信小程序的项目.不过后面又交给前端其他同学做了.自己又回到了一个公司认为的核心产品上.</p>
+<p>&emsp;&emsp;自己有时候回去点吧点吧2018年的工作文件夹,看到的全都是各种各样的项目文件,文档.唯一做了点技术性工作的也就是上面那套框架以及其中的一些组件开发. 在自己目前看来, 实在不值一提. 其实去年有学习<code>swift</code>, 但只学了皮毛. 后面再没做过什么功课了.</p>
+<h3 id="对于生活"><a href="#对于生活" class="headerlink" title="对于生活"></a>对于生活</h3><p>&emsp;&emsp;按部就班? 其实今年年末大家貌似人心惶惶的看着各大厂在裁员. 我等小厂似乎并没有受到什么波及. 不过怎么说? 程序员这一行, 实力碾压一切, 如果你再拥有点情商, 那还怕被裁掉吗? 不过话说胡来, 这两点我似乎都不占, 哈哈哈! 要不也不会在这里自言自语了.<br>&emsp;&emsp;去了一些地方, 认识了一些朋友.</p>
+<h3 id="9102年会怎么样"><a href="#9102年会怎么样" class="headerlink" title="9102年会怎么样?"></a>9102年会怎么样?</h3><p>&emsp;&emsp;我最近喜欢上了<code>Youtube</code>上的一个专栏, 链接我就不写了,有兴趣的可以去搜 <strong>KUAIZERO</strong>, 不知道为什么,很喜欢他俩夫妻的这个节目. 说了半天也没说今年怎么样? - -! 其实我并不想像网上天天晒各种2019年计划的人一样,列一堆TODO LIST. 不过今年我感觉有几个重要的,自律性的东西想去做.</p>
+<ul>
+<li>减少手机依赖, 基本告别朋友圈(微信), 实在是浪费时间啊.</li>
+<li>做一些技术拓展 (非前端的)</li>
+<li>去年没看完的书今年需要补回来</li>
+<li>不论今年是否换地方, 希望一切回归正常. 做好自己该做的事情</li>
+<li>一切归零, 从头开始.</li>
+</ul>
 
       
     </div>
@@ -545,11 +535,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/vue/" rel="tag"># vue</a>
+            <a href="/tags/过去/" rel="tag"># 过去</a>
           
-            <a href="/tags/打包/" rel="tag"># 打包</a>
+            <a href="/tags/生活/" rel="tag"># 生活</a>
           
-            <a href="/tags/资源路径/" rel="tag"># 资源路径</a>
+            <a href="/tags/日记/" rel="tag"># 日记</a>
           
         </div>
       
@@ -562,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/13/apple-ipad-pro-2018-review/" rel="next" title="一个时代已过去，带着USB-C和全面屏的iPad pro 2018">
-                <i class="fa fa-chevron-left"></i> 一个时代已过去，带着USB-C和全面屏的iPad pro 2018
+              <a href="/2019/01/01/study-javascript-prototype-chain/" rel="next" title="复习Javascript原型链">
+                <i class="fa fa-chevron-left"></i> 复习Javascript原型链
               </a>
             
           </div>
@@ -571,10 +561,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/01/study-javascript-prototype-chain/" rel="prev" title="复习Javascript原型链">
-                复习Javascript原型链 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -623,8 +609,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -770,6 +765,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#对于工作"><span class="nav-number">1.</span> <span class="nav-text">对于工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于生活"><span class="nav-number">2.</span> <span class="nav-text">对于生活</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9102年会怎么样"><span class="nav-number">3.</span> <span class="nav-text">9102年会怎么样?</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
