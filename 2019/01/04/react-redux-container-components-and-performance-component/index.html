@@ -6,13 +6,14 @@
   <title>React - Redux 学习之Redux-thunk &amp; applyMiddleware | Vicco&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在之前的练习中,我们一直在使用同步的方式进行状态管理, 那么在Redux中,我么如何使用异步的方式进行状态更新呢?这里需要用到Redux的中间件applyMiddelware 和 redux-thunk: 首先,我们应该在创建Store的时候注入中间件 12345678import &amp;#123; createStore, applyMiddleware &amp;#125; from &apos;redux&apos;imp">
+<meta name="keywords" content="react,redux,redux-thunk,applyMiddleware">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React - Redux 学习之Redux-thunk &amp; applyMiddleware">
 <meta property="og:url" content="http://viccowang.github.io/2019/01/04/react-redux-container-components-and-performance-component/index.html">
 <meta property="og:site_name" content="Vicco&#39;s Blog">
 <meta property="og:description" content="在之前的练习中,我们一直在使用同步的方式进行状态管理, 那么在Redux中,我么如何使用异步的方式进行状态更新呢?这里需要用到Redux的中间件applyMiddelware 和 redux-thunk: 首先,我们应该在创建Store的时候注入中间件 12345678import &amp;#123; createStore, applyMiddleware &amp;#125; from &apos;redux&apos;imp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-04T14:23:54.222Z">
+<meta property="og:updated_time" content="2019-01-05T04:51:51.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React - Redux 学习之Redux-thunk &amp; applyMiddleware">
 <meta name="twitter:description" content="在之前的练习中,我们一直在使用同步的方式进行状态管理, 那么在Redux中,我么如何使用异步的方式进行状态更新呢?这里需要用到Redux的中间件applyMiddelware 和 redux-thunk: 首先,我们应该在创建Store的时候注入中间件 12345678import &amp;#123; createStore, applyMiddleware &amp;#125; from &apos;redux&apos;imp">
@@ -52,6 +53,8 @@
           
             <a class="main-nav-link" href="/">首页</a>
           
+            <a class="main-nav-link" href="/categories/web前端/">前端</a>
+          
             <a class="main-nav-link" href="/archives">归档</a>
           
         
@@ -88,6 +91,8 @@
       
         <li><a href="/">首页</a></li>
       
+        <li><a href="/categories/web前端/">前端</a></li>
+      
         <li><a href="/archives">归档</a></li>
       
       
@@ -101,6 +106,10 @@
   <time datetime="2019-01-04T13:58:43.000Z" itemprop="datePublished">2019-01-04</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web前端/">web前端</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -133,10 +142,12 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://viccowang.github.io/2019/01/04/react-redux-container-components-and-performance-component/" data-id="cjqixdwac0002iwj6hle1mjxq" class="article-share-link">Share</a>
+        <a data-url="http://viccowang.github.io/2019/01/04/react-redux-container-components-and-performance-component/" data-id="cjqiztgp200028oj6aqibtt4i" class="article-share-link">Share</a>
       
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/applyMiddleware/">applyMiddleware</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux/">redux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redux-thunk/">redux-thunk</a></li></ul>
+
     </footer>
   </div>
   
@@ -175,6 +186,8 @@
       <nav id="mobile-nav">
   
     <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/categories/web前端/" class="mobile-nav-link">前端</a>
   
     <a href="/archives" class="mobile-nav-link">归档</a>
   
