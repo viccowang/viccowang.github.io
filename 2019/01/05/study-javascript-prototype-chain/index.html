@@ -15,7 +15,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://viccowang.github.io/2019/01/05/study-javascript-prototype-chain/01.png">
 <meta property="og:image" content="http://viccowang.github.io/2019/01/05/study-javascript-prototype-chain/02.png">
-<meta property="og:updated_time" content="2019-01-05T09:35:01.519Z">
+<meta property="og:updated_time" content="2019-01-05T09:36:21.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="复习Javascript原型链">
 <meta name="twitter:description" content="现在我们在日常的工作中由于有各种大神造好的轮子，导致我们在业务开发中已经很少能经常性接触到开发低层的一些事情。有时候就要时不时的给自己充充电，否则我们就只能用降龙十八掌吓唬人了，根本没有内功 ：P 原型对象和构造函数我们从一个构造函数开始：1234function Person (name) &amp;#123;  this.name = name&amp;#125;var person = new Person">
@@ -132,6 +132,7 @@
         <p>现在我们在日常的工作中由于有各种大神造好的轮子，导致我们在业务开发中已经很少能经常性接触到开发低层的一些事情。有时候就要时不时的给自己充充电，否则我们就只能用降龙十八掌吓唬人了，根本没有内功 ：P</p>
 <h3 id="原型对象和构造函数"><a href="#原型对象和构造函数" class="headerlink" title="原型对象和构造函数"></a>原型对象和构造函数</h3><p>我们从一个构造函数开始：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">'Jack'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>我们在声明它的时候，JS会自动生成一个与其对应原型对象（原型对象是对象），该构造函数会有一个内部属性，名为<strong>prototype</strong>指向原型对象，你可以通过<strong>Person.prototype</strong>来访问其中的内容，这也就是我们通常在原型对象上挂载属性和方法的方式。</p>
+<a id="more"></a>
 <p>原型对象上也会有一个属性<strong>constructor</strong>指向该构造函数（在高程中的描述是：指向函数本身）。</p>
 <blockquote>
 <p>其实我们可以把构造函数和原型对象理解为： 前者是制造汽车的机器，而后者是设计图纸，制造每一种汽车都需要对应的设计图纸，有了造车的机器才能制造对应的汽车，而有了设计图纸才能设计出造车的机器。我们只要拿到设计图，就能设计出造车的机器，也就能制造出相对应类型的汽车了。嗯……所以在各种大片里设计图都是最牛X的东西。</p>
@@ -163,7 +164,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://viccowang.github.io/2019/01/05/study-javascript-prototype-chain/" data-id="cjqj9vw7h00078gj6pi913hbp" class="article-share-link">Share</a>
+        <a data-url="http://viccowang.github.io/2019/01/05/study-javascript-prototype-chain/" data-id="cjqj9xdz10006c4j6usxpo8bo" class="article-share-link">Share</a>
       
 
       
