@@ -3,15 +3,19 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Vicco&#39;s Blog</title>
+  <title>快速解决Vue项目打包样式中静态资源路径问题 | Vicco&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Vicco&#39;s Blog">
-<meta property="og:url" content="http://viccowang.github.io/index.html">
+  <meta name="description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径  举个栗子:1234567.img &amp;#123;    width:1116px;    height:554px;    clear: bot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速解决Vue项目打包样式中静态资源路径问题">
+<meta property="og:url" content="http://viccowang.github.io/2019/01/05/resolve-webpack-image-url-problems-in-vuejs/index.html">
 <meta property="og:site_name" content="Vicco&#39;s Blog">
+<meta property="og:description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径  举个栗子:1234567.img &amp;#123;    width:1116px;    height:554px;    clear: bot">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-01-05T03:41:27.667Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vicco&#39;s Blog">
+<meta name="twitter:title" content="快速解决Vue项目打包样式中静态资源路径问题">
+<meta name="twitter:description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径  举个栗子:1234567.img &amp;#123;    width:1116px;    height:554px;    clear: bot">
   
   
     <link rel="icon" href="/favicon.png">
@@ -91,11 +95,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-
-    
-    <article id="post-resolve-webpack-image-url-problems-in-vuejs" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-resolve-webpack-image-url-problems-in-vuejs" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/05/resolve-webpack-image-url-problems-in-vuejs/" class="article-date">
   <time datetime="2019-01-05T03:40:39.000Z" itemprop="datePublished">2019-01-05</time>
@@ -108,8 +108,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/05/resolve-webpack-image-url-problems-in-vuejs/">快速解决Vue项目打包样式中静态资源路径问题</a>
+    <h1 class="article-title" itemprop="name">
+      快速解决Vue项目打包样式中静态资源路径问题
     </h1>
   
 
@@ -156,116 +156,20 @@
     </footer>
   </div>
   
-</article>
-
-
     
+<nav id="article-nav">
   
-
-    
-    <article id="post-react-redux-study-redux-saga" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/04/react-redux-study-redux-saga/" class="article-date">
-  <time datetime="2019-01-04T14:26:34.000Z" itemprop="datePublished">2019-01-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/04/react-redux-study-redux-saga/">react-redux-study-redux-saga</a>
-    </h1>
+    <a href="/2019/01/04/react-redux-study-redux-saga/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">react-redux-study-redux-saga</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先,这个<strong>redux-saga</strong>和redux-thunk做的是同样的事情, 就是解决我们在<strong>redux</strong>中做异步的事情. 但 <strong>redux-saga </strong> 所涉及到的知识点和代码的复杂程度上都要复杂一些.</p>
-<blockquote>
-<p>redux-saga 是基于ES6 的 <strong>Generator</strong>来实现的异步请求数据.</p>
-</blockquote>
-<p>这是一个<strong>Generator</strong>例如:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">g</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> res = <span class="keyword">yield</span> <span class="number">1</span> + <span class="number">2</span></span><br><span class="line">	<span class="keyword">return</span> res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以上就是一个用同步方式来实现异步请求的<strong>Generator</strong> 函数. 更多的需要参考其文档. 这里就吧赘述了,因为我们的目的是记录学习 <strong>Redux-saga</strong>在<strong>react</strong>中的应用.</p>
-<p>那么,我们如何使用Redux-saga来实现异步数据的交互呢? 这里我们列举一个完整的使用<strong>Reudx-saga</strong>来构建我们之前<strong>TodoList</strong>中数据获取部分的代码</p>
-<p>首先,我们需要创建一个<strong>saga</strong>目录,用于存储我们的<strong>saga generator</strong>函数,具体代码内容贴如下:</p>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/04/react-redux-study-redux-saga/#more">() =&gt; { read more }</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://viccowang.github.io/2019/01/04/react-redux-study-redux-saga/" data-id="cjqixbmh00000cwj6a558lcg8" class="article-share-link">Share</a>
-      
-
-      
-    </footer>
-  </div>
   
 </article>
 
-
-    
-  
-
-    
-    <article id="post-react-redux-container-components-and-performance-component" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/04/react-redux-container-components-and-performance-component/" class="article-date">
-  <time datetime="2019-01-04T13:58:43.000Z" itemprop="datePublished">2019-01-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/04/react-redux-container-components-and-performance-component/">React - Redux 学习之Redux-thunk &amp; applyMiddleware</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在之前的练习中,我们一直在使用同步的方式进行状态管理, 那么在Redux中,我么如何使用异步的方式进行状态更新呢?<br>这里需要用到Redux的中间件<strong>applyMiddelware</strong> 和 <strong>redux-thunk</strong>:</p>
-<p>首先,我们应该在创建<strong>Store</strong>的时候注入中间件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = createStore(</span><br><span class="line">    reducers,</span><br><span class="line">    <span class="comment">// 注入中间件</span></span><br><span class="line">    applyMiddleware(thunk)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>这里根据文档,我们知道<strong>thunk</strong> 这个东西可以将我们的<strong>Action Object</strong> 转为 <strong>function</strong> </p>
-<p>例如:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = <span class="number">1</span> + <span class="number">2</span></span><br><span class="line"><span class="comment">// 转换为, 这时的foo就被称作一个thunk</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="params">()</span> =&gt;</span> <span class="number">1</span> + <span class="number">2</span></span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2019/01/04/react-redux-container-components-and-performance-component/#more">() =&gt; { read more }</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://viccowang.github.io/2019/01/04/react-redux-container-components-and-performance-component/" data-id="cjqixbmht0002cwj6df5v39fr" class="article-share-link">Share</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-    
-  
-  
 </section>
         
       </div>
