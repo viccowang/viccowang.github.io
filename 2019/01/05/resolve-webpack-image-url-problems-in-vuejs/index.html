@@ -5,17 +5,17 @@
   
   <title>快速解决Vue项目打包样式中静态资源路径问题 | Vicco&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径  举个栗子:1234567.img &amp;#123;    width:1116px;    height:554px;    clear: bot">
+  <meta name="description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速解决Vue项目打包样式中静态资源路径问题">
 <meta property="og:url" content="http://viccowang.github.io/2019/01/05/resolve-webpack-image-url-problems-in-vuejs/index.html">
 <meta property="og:site_name" content="Vicco&#39;s Blog">
-<meta property="og:description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径  举个栗子:1234567.img &amp;#123;    width:1116px;    height:554px;    clear: bot">
+<meta property="og:description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-05T03:41:27.667Z">
+<meta property="og:updated_time" content="2019-01-05T03:45:33.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速解决Vue项目打包样式中静态资源路径问题">
-<meta name="twitter:description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径  举个栗子:1234567.img &amp;#123;    width:1116px;    height:554px;    clear: bot">
+<meta name="twitter:description" content="最近在使用基于Vue-cli构建的项目中,使用Webpack打包时,在样式表中引入的background-image路径,在生产环境无法显示. 导致该问题是因为:  生产环境路径与开发环境不一致 生产打包后,样式中的相对路径由webpack变为了绝对路径">
   
   
     <link rel="icon" href="/favicon.png">
@@ -123,7 +123,9 @@
 <li>生产环境路径与开发环境不一致</li>
 <li>生产打包后,样式中的相对路径由<strong>webpack</strong>变为了绝对路径</li>
 </ol>
-<p>举个栗子:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">1116px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">554px</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'../../assets/images/timg.gif'</span>) no-repeat;</span><br><span class="line">    <span class="attribute">background-size</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>举个栗子:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">1116px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">554px</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'../../assets/images/timg.gif'</span>) no-repeat;</span><br><span class="line">    <span class="attribute">background-size</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>我们上面直接引用了相对路径. 在生产打包后,会变成绝对路径.</p>
 </blockquote>
@@ -149,7 +151,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://viccowang.github.io/2019/01/05/resolve-webpack-image-url-problems-in-vuejs/" data-id="cjqixbmh30001cwj68f69zzyi" class="article-share-link">Share</a>
+        <a data-url="http://viccowang.github.io/2019/01/05/resolve-webpack-image-url-problems-in-vuejs/" data-id="cjqixdwa80001iwj6t8dmptmt" class="article-share-link">Share</a>
       
 
       

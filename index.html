@@ -123,33 +123,16 @@
 <li>生产环境路径与开发环境不一致</li>
 <li>生产打包后,样式中的相对路径由<strong>webpack</strong>变为了绝对路径</li>
 </ol>
-<p>举个栗子:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">1116px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">554px</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'../../assets/images/timg.gif'</span>) no-repeat;</span><br><span class="line">    <span class="attribute">background-size</span>:<span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>我们上面直接引用了相对路径. 在生产打包后,会变成绝对路径.</p>
-</blockquote>
-<p><strong>通用Webpack修正办法</strong>:</p>
-<blockquote>
-<p>该办法适用于所有基于<strong>Webpack</strong>打包的情况。<br>我们在构建独立样式时，会使用<strong>extract-text-webpack-plugin</strong>插件。该插件可以将样式在打包后生产独立的样式表文件。<br>我们只需要为其添加一个属性<strong><strong>publicPath: ‘../../‘ </strong></strong>即可(因为我们这里只针对样式表中的相对静态文件资源)</p>
-</blockquote>
-<blockquote>
-<p><strong>注意：该路径需要根据不同框架来判断， <strong>webpack</strong>在<strong>Vue</strong>项目打包后的样式表<strong>css</strong>和<strong>static</strong>之间相差两级路径。因此这里配置了两级路径</strong></p>
-</blockquote>
-<p><strong>在Vue-cli构建的项目中修正:</strong></p>
-<blockquote>
-<p>在<strong>build / utils.js </strong>目录中找到 修改如下：</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> ExtractTextPlugin.extract(&#123;</span><br><span class="line">       use: loaders,</span><br><span class="line">       fallback: <span class="string">'vue-style-loader'</span>,</span><br><span class="line">       <span class="comment">// 添加该路径</span></span><br><span class="line">       publicPath: <span class="string">'../../'</span></span><br><span class="line">     &#125;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>大功告成！:-P</p>
-</blockquote>
-<hr>
-<p>另： 我们如果在<strong>template</strong>中定义的路径，如果引入的静态文件在<strong>assets</strong>中，将会自动转为<strong>BASE64</strong>，因此我们在模板中的引入我们无需处理。</p>
-
+        
+          <p class="article-more-link">
+            <a href="/2019/01/05/resolve-webpack-image-url-problems-in-vuejs/#more">() =&gt; { read more }</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://viccowang.github.io/2019/01/05/resolve-webpack-image-url-problems-in-vuejs/" data-id="cjqixbmh30001cwj68f69zzyi" class="article-share-link">Share</a>
+        <a data-url="http://viccowang.github.io/2019/01/05/resolve-webpack-image-url-problems-in-vuejs/" data-id="cjqixdwa80001iwj6t8dmptmt" class="article-share-link">Share</a>
       
 
       
@@ -202,7 +185,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://viccowang.github.io/2019/01/04/react-redux-study-redux-saga/" data-id="cjqixbmh00000cwj6a558lcg8" class="article-share-link">Share</a>
+        <a data-url="http://viccowang.github.io/2019/01/04/react-redux-study-redux-saga/" data-id="cjqixdwa30000iwj68t5t1teg" class="article-share-link">Share</a>
       
 
       
@@ -253,7 +236,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://viccowang.github.io/2019/01/04/react-redux-container-components-and-performance-component/" data-id="cjqixbmht0002cwj6df5v39fr" class="article-share-link">Share</a>
+        <a data-url="http://viccowang.github.io/2019/01/04/react-redux-container-components-and-performance-component/" data-id="cjqixdwac0002iwj6hle1mjxq" class="article-share-link">Share</a>
       
 
       
