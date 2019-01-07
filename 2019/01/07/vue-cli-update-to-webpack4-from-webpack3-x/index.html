@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.loli.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Helvetica:300,300italic,400,400italic,700,700italic|Comic Sans MS:300,300italic,400,400italic,700,700italic|Tahoma:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+  
+
+<link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="近日，泡面将自己的一个Vue-cli构建的前端框架从webpack3.x升级到了4.x版本。其中有一些细节还是需要记录一下，以免过两天就忘记了。 原先的环境 项目原先通过Vue-cli 2.9.3 版本构建， 原先使用的webpack 3.x版本  首先需要对基础包进行更新(package.json) webpack 更新到4.x版本，泡面这里更新到了4.28.3 更新webpack-dev-se">
+<meta name="keywords" content="vue,vuejs,webpack3,webpack4,update">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue项目从webpack3.x升级webpack4完全指南">
+<meta property="og:url" content="http://viccowang.github.io/2019/01/07/vue-cli-update-to-webpack4-from-webpack3-x/index.html">
+<meta property="og:site_name" content="Vicco&#39;s Blog">
+<meta property="og:description" content="近日，泡面将自己的一个Vue-cli构建的前端框架从webpack3.x升级到了4.x版本。其中有一些细节还是需要记录一下，以免过两天就忘记了。 原先的环境 项目原先通过Vue-cli 2.9.3 版本构建， 原先使用的webpack 3.x版本  首先需要对基础包进行更新(package.json) webpack 更新到4.x版本，泡面这里更新到了4.28.3 更新webpack-dev-se">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-07T14:07:42.018Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue项目从webpack3.x升级webpack4完全指南">
+<meta name="twitter:description" content="近日，泡面将自己的一个Vue-cli构建的前端框架从webpack3.x升级到了4.x版本。其中有一些细节还是需要记录一下，以免过两天就忘记了。 原先的环境 项目原先通过Vue-cli 2.9.3 版本构建， 原先使用的webpack 3.x版本  首先需要对基础包进行更新(package.json) webpack 更新到4.x版本，泡面这里更新到了4.28.3 更新webpack-dev-se">
+
+
+
+
+
+
+  <link rel="canonical" href="http://viccowang.github.io/2019/01/07/vue-cli-update-to-webpack4-from-webpack3-x/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Vue项目从webpack3.x升级webpack4完全指南 | Vicco's Blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2494a401a5fa74b1eb8dc6ca3ea888b8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Vicco's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">云在青天水在瓶</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-frontend">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/web前端" rel="section"><i class="menu-item-icon fa fa-fw fa-bug"></i> <br>前端</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-aboutlife">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/关于生活" rel="section"><i class="menu-item-icon fa fa-fw fa-hand-spock-o"></i> <br>生活</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://viccowang.github.io/2019/01/07/vue-cli-update-to-webpack4-from-webpack3-x/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Vicco Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Vicco's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue项目从webpack3.x升级webpack4完全指南
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-07 21:32:45" itemprop="dateCreated datePublished" datetime="2019-01-07T21:32:45+08:00">2019-01-07</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/07/vue-cli-update-to-webpack4-from-webpack3-x/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/07/vue-cli-update-to-webpack4-from-webpack3-x/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/01/07/vue-cli-update-to-webpack4-from-webpack3-x/" class="leancloud_visitors" data-flag-title="Vue项目从webpack3.x升级webpack4完全指南">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>近日，泡面将自己的一个Vue-cli构建的前端框架从<strong>webpack3.x</strong>升级到了<strong>4.x</strong>版本。其中有一些细节还是需要记录一下，以免过两天就忘记了。</p>
+<h3 id="原先的环境"><a href="#原先的环境" class="headerlink" title="原先的环境"></a>原先的环境</h3><ul>
+<li>项目原先通过<strong>Vue-cli 2.9.3</strong> 版本构建，</li>
+<li>原先使用的<strong>webpack 3.x</strong>版本</li>
+</ul>
+<h3 id="首先需要对基础包进行更新-package-json"><a href="#首先需要对基础包进行更新-package-json" class="headerlink" title="首先需要对基础包进行更新(package.json)"></a>首先需要对基础包进行更新(package.json)</h3><ul>
+<li>webpack 更新到4.x版本，泡面这里更新到了<strong>4.28.3</strong></li>
+<li>更新<strong>webpack-dev-server</strong>，泡面更新到了<strong>3.1.14</strong>版本,</li>
+<li>安装<strong>webpack-cli</strong>，泡面安装的是<strong>3.2.1</strong>版本</li>
+</ul>
+<a id="more"></a>
+<p>除了上面的这几个，还需要更新下面几个：</p>
+<ul>
+<li><strong>vue-loader</strong> 泡面直接升级到了15版本，</li>
+<li><strong>eslint-loader</strong> 升级到了<strong>1.7.1</strong>,这个当时在做启动的时候提示了一些错误,所以索性也就升级了.</li>
+<li><strong>happypack</strong>, 泡面使用了多线程加速,所以这个也必须要升级,否则会报错,泡面更新到了<strong>5.0.1</strong></li>
+<li><strong>html-webpack-plugin</strong>, 这个也需要更新,否则会提示错误,泡面这里升级到了<strong>3.2.0</strong></li>
+</ul>
+<p>除了上面几个,还需要额外下载一个:</p>
+<ul>
+<li><strong>mini-css-extract-plugin</strong>, 该包是要<strong>替换</strong>掉<strong>extract-text-webpack-plugin</strong>来使用,所以后者就遗弃掉了.</li>
+</ul>
+<h3 id="接着我们修改一下webpack-base-conf-js-没有使用happypack的这步骤可略过…"><a href="#接着我们修改一下webpack-base-conf-js-没有使用happypack的这步骤可略过…" class="headerlink" title="接着我们修改一下webpack.base.conf.js,没有使用happypack的这步骤可略过…"></a>接着我们修改一下<strong>webpack.base.conf.js</strong>,没有使用happypack的这步骤可略过…</h3><p>泡面这里不知道为什么不能使用happypack来挂载<strong>vue-loader</strong>,否则会提示错误,所以泡面这里将原先的happypack的配置修改回了原先:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> vueLoaderConfig = <span class="built_in">require</span>(<span class="string">'./vue-loader.conf'</span>)</span><br><span class="line">...</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  ...</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.vue$/</span>,</span><br><span class="line">        <span class="comment">// loader: 'happypack/loader?id=happy-vue'</span></span><br><span class="line">        loader: <span class="string">'vue-loader'</span>,</span><br><span class="line">        options: vueLoaderConfig</span><br><span class="line">    &#125;,</span><br><span class="line">  ...  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="接着来调整-webpack-dev-conf-js"><a href="#接着来调整-webpack-dev-conf-js" class="headerlink" title="接着来调整 webpack.dev.conf.js"></a>接着来调整 <strong>webpack.dev.conf.js</strong></h3><p>首先在合并配置的地方引入<strong>mode</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">// 开发环境引入</span></span><br><span class="line">mode: <span class="string">'development'</span>,</span><br><span class="line">...</span><br><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">devServer: &#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>webpack4需要手动引入vue-loader插件,因为泡面是从14版本升级到15版本,<a href="https://vue-loader.vuejs.org/zh/migrating.html" target="_blank" rel="noopener">点我查看官方文档,如何从 v14 迁移</a>,所以这里需要引入:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> VueLoaderPlugin = <span class="built_in">require</span>(<span class="string">'vue-loader/lib/plugin'</span>)</span><br><span class="line">...</span><br><span class="line"><span class="built_in">module</span>.export = &#123;</span><br><span class="line">  ...</span><br><span class="line">  plugins: [</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 引入vue-loader插件</span></span><br><span class="line">    <span class="keyword">new</span> VueLoaderPlugin(),</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 同时,泡面注释掉了vue-loader的happypack</span></span><br><span class="line">    <span class="comment">// new Happypack(&#123;</span></span><br><span class="line">    <span class="comment">//   id: 'happy-vue',</span></span><br><span class="line">    <span class="comment">//   loaders: [&#123;</span></span><br><span class="line">    <span class="comment">//     loader: 'vue-loader',</span></span><br><span class="line">    <span class="comment">//     options: vueLoaderConfig</span></span><br><span class="line">    <span class="comment">//   &#125;]</span></span><br><span class="line">    <span class="comment">// &#125;)</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着, 以下插件被废弃掉了,直接注释掉</p>
+<ul>
+<li>webpack.DefinePlugin</li>
+<li>webpack.NamedModulesPlugin</li>
+<li>webpack.NoEmitOnErrorsPlugin</li>
+</ul>
+<p>ok, 这个文件就改完了.</p>
+<h3 id="接着来修改webpack-prod-conf-js"><a href="#接着来修改webpack-prod-conf-js" class="headerlink" title="接着来修改webpack.prod.conf.js"></a>接着来修改webpack.prod.conf.js</h3><p>同开发环境,需要引入<strong>mode</strong>和<strong>vue-loader</strong>,一模一样,所以这里不赘述了.<br>接着,我们需要在配置表里添加<strong>optimization</strong>选项:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">output: &#123; ...&#125;,</span><br><span class="line"><span class="comment">// 这里添加</span></span><br><span class="line">optimization: &#123;</span><br><span class="line">    runtimeChunk: &#123;</span><br><span class="line">      name: <span class="string">'manifest'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    minimizer: [</span><br><span class="line">      <span class="keyword">new</span> UglifyJsPlugin(&#123;</span><br><span class="line">        cache: <span class="literal">true</span>,</span><br><span class="line">        parallel: <span class="literal">true</span>,</span><br><span class="line">        sourceMap: config.build.productionSourceMap,</span><br><span class="line">        uglifyOptions: &#123;</span><br><span class="line">          warnings: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;),</span><br><span class="line">      <span class="keyword">new</span> OptimizeCSSPlugin(&#123;</span><br><span class="line">      cssProcessorOptions: config.build.productionSourceMap</span><br><span class="line">        ? &#123; <span class="attr">safe</span>: <span class="literal">true</span>, <span class="attr">map</span>: &#123; <span class="attr">inline</span>: <span class="literal">false</span> &#125; &#125;</span><br><span class="line">        : &#123; <span class="attr">safe</span>: <span class="literal">true</span> &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    ],</span><br><span class="line">    splitChunks:&#123;</span><br><span class="line">      chunks: <span class="string">'async'</span>,</span><br><span class="line">      minSize: <span class="number">30000</span>,</span><br><span class="line">      minChunks: <span class="number">1</span>,</span><br><span class="line">      maxAsyncRequests: <span class="number">5</span>,</span><br><span class="line">      maxInitialRequests: <span class="number">3</span>,</span><br><span class="line">      name: <span class="literal">false</span>,</span><br><span class="line">      cacheGroups: &#123;</span><br><span class="line">        vendor: &#123;</span><br><span class="line">          name: <span class="string">'vendor'</span>,</span><br><span class="line">          chunks: <span class="string">'initial'</span>,</span><br><span class="line">          priority: <span class="number">-10</span>,</span><br><span class="line">          reuseExistingChunk: <span class="literal">false</span>,</span><br><span class="line">          test: <span class="regexp">/node_modules\/(.*)\.js/</span></span><br><span class="line">        &#125;,</span><br><span class="line">        styles: &#123;</span><br><span class="line">          name: <span class="string">'styles'</span>,</span><br><span class="line">          test: <span class="regexp">/\.(scss|css)$/</span>,</span><br><span class="line">          chunks: <span class="string">'all'</span>,</span><br><span class="line">          minChunks: <span class="number">1</span>,</span><br><span class="line">          reuseExistingChunk: <span class="literal">true</span>,</span><br><span class="line">          enforce: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [...]</span><br></pre></td></tr></table></figure></p>
+<p>接着,我们需要引入<strong>mini-css-extract-plugin</strong>插件,并添加到插件里:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>)</span><br><span class="line">...</span><br><span class="line">plugins: [</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">    filename: utils.assetsPath(<span class="string">'css/[name].[contenthash].css'</span>)</span><br><span class="line">  &#125;),</span><br><span class="line">  ...  </span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>然后, 我们需要把废弃掉的插件注释掉:</p>
+<ul>
+<li>webpack.DefinePlugin</li>
+<li>UglifyJsPlugin (放到optimization里了)</li>
+<li>ExtractTextPlugin</li>
+<li>OptimizeCSSPlugin (放到optimization里了)</li>
+<li>CommonsChunkPlugin (所有的…)</li>
+</ul>
+<p>ok, 至此该文件就调整完了.</p>
+<h3 id="最后一个utils-js"><a href="#最后一个utils-js" class="headerlink" title="最后一个utils.js"></a>最后一个utils.js</h3><p>这里主要是需要添加<strong>mini-css-extract-plugin</strong>插件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">// 注释掉原来的插件</span></span><br><span class="line"><span class="comment">// const ExtractTextPlugin = require("extract-text-webpack-plugin");</span></span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">'mini-css-extract-plugin'</span>)</span><br><span class="line">...</span><br><span class="line"><span class="comment">// 找到:</span></span><br><span class="line"><span class="comment">// return ExtractTextPlugin.extract(&#123;</span></span><br><span class="line"><span class="comment">//   use: loaders,</span></span><br><span class="line"><span class="comment">//   fallback: "vue-style-loader",</span></span><br><span class="line"><span class="comment">//   publicPath: '../../'</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br><span class="line"><span class="comment">// 改为:</span></span><br><span class="line"><span class="keyword">return</span> [MiniCssExtractPlugin.loader].concat(loaders)</span><br></pre></td></tr></table></figure></p>
+<p>ok, 大功告成! 至此webpack4的配置文件就全部修改完成了.</p>
+<blockquote>
+<p>目前, 泡面至在此记录流水账,回头性能测试再发文章记录.</p>
+</blockquote>
+<p>ps: 如果出现这种错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: [vue-loader] vue-template-compiler must be installed as a peer dependency, or a compatible compiler implementation must be passed via options.</span><br></pre></td></tr></table></figure></p>
+<p>请重新安装一下 <strong>vue-template-compiler</strong></p>
+<p>完！碎觉~</p>
+<hr>
+<h4 id="文章参考"><a href="#文章参考" class="headerlink" title="文章参考:"></a>文章参考:</h4><ul>
+<li><a href="https://segmentfault.com/a/1190000014516899" target="_blank" rel="noopener">vue项目升级webpack4指南</a></li>
+<li><a href="https://vue-loader.vuejs.org/zh/migrating.html#%E5%80%BC%E5%BE%97%E6%B3%A8%E6%84%8F%E7%9A%84%E4%B8%8D%E5%85%BC%E5%AE%B9%E5%8F%98%E6%9B%B4" target="_blank" rel="noopener">Vue-loader从14迁移</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vue/" rel="tag"># vue</a>
+          
+            <a href="/tags/vuejs/" rel="tag"># vuejs</a>
+          
+            <a href="/tags/webpack3/" rel="tag"># webpack3</a>
+          
+            <a href="/tags/webpack4/" rel="tag"># webpack4</a>
+          
+            <a href="/tags/update/" rel="tag"># update</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/06/the-bumblebee-2019-movie-review/" rel="next" title="其实我更喜欢有点金属味道的《大黄蜂》">
+                <i class="fa fa-chevron-left"></i> 其实我更喜欢有点金属味道的《大黄蜂》
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.jpg" alt="Vicco Wang">
+            
+              <p class="site-author-name" itemprop="name">Vicco Wang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/viccowang" title="GitHub &rarr; https://github.com/viccowang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:viccowang@gmail.com" title="E-Mail &rarr; mailto:viccowang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://daxian.work" title="https://daxian.work" rel="noopener" target="_blank">Daxian.work</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原先的环境"><span class="nav-number">1.</span> <span class="nav-text">原先的环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首先需要对基础包进行更新-package-json"><span class="nav-number">2.</span> <span class="nav-text">首先需要对基础包进行更新(package.json)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接着我们修改一下webpack-base-conf-js-没有使用happypack的这步骤可略过…"><span class="nav-number">3.</span> <span class="nav-text">接着我们修改一下webpack.base.conf.js,没有使用happypack的这步骤可略过…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接着来调整-webpack-dev-conf-js"><span class="nav-number">4.</span> <span class="nav-text">接着来调整 webpack.dev.conf.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接着来修改webpack-prod-conf-js"><span class="nav-number">5.</span> <span class="nav-text">接着来修改webpack.prod.conf.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后一个utils-js"><span class="nav-number">6.</span> <span class="nav-text">最后一个utils.js</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文章参考"><span class="nav-number">6.1.</span> <span class="nav-text">文章参考:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-certificate"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Vicco Wang</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="//lib.baomitu.com/jquery/2.2.4/jquery.min.js"></script>
+
+  
+  <script src="//lib.baomitu.com/velocity/1.5.2/velocity.min.js"></script>
+
+  
+  <script src="//lib.baomitu.com/velocity/1.5.2/velocity.ui.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  	
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function (item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'FgXz4ATSmYXhIfBP1J58LeQS-gzGzoHsz',
+    appKey: 'wiEChi2clxd6MygEh0keQ9Eb',
+    placeholder: '快来哈皮啊 <<:)',
+    avatar: 'monsterid',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
