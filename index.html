@@ -498,40 +498,16 @@
 
       
         
+          <p>&emsp;&emsp;其实每一个Javascript开发人员都不敢百分之百的保证自己对<strong>this</strong>这个东西有多么深入的了解，就好比泡面自己，用在其中，<br>却经常容易迷失在其中。</p>
+          <!--noindex-->
           
-            <p>&emsp;&emsp;其实每一个Javascript开发人员都不敢百分之百的保证自己对<strong>this</strong>这个东西有多么深入的了解，就好比泡面自己，用在其中，<br>却经常容易迷失在其中。</p>
-<h3 id="this并不指向自身"><a href="#this并不指向自身" class="headerlink" title="this并不指向自身"></a>this并不指向自身</h3><p>&emsp;&emsp;我们先来看一个简单的示例：</p>
-<p><img src="/2019/01/21/study-javascript-key-word-this/1.png" alt="about this"></p>
-<p>&emsp;&emsp;这个简单的示例我们可以总结出以下事情：</p>
-<ol>
-<li><strong>this</strong>是在调用时所处的环境确定的；</li>
-<li><strong>this</strong>的指向跟调用栈有很大关系，我们是在全局环境下通过最普通的方式调用了<strong>foo</strong>，而在调用栈中，全局<strong>Global</strong>环境永远是第一个被压入栈中,所以我们<strong>foo</strong>中的<strong>this</strong>指向了全局环境(Window)。我们通过下面的图即可看出来:</li>
-</ol>
-<p><img src="/2019/01/21/study-javascript-key-word-this/2.png" alt="GlobalScope在最底下"></p>
-<blockquote>
-<p>不过，我们需要注意一点，这段代码是运行在兼容模式下，如果你在代码中加入了<strong>严格模式</strong>，则<strong>this.bar</strong>会指向<strong>undefined</strong></p>
-</blockquote>
-<p>&emsp;&emsp;</p>
-<h3 id="对象中的this"><a href="#对象中的this" class="headerlink" title="对象中的this"></a>对象中的this</h3><p>&emsp;&emsp;我们先来看一个函数在对象中做属性的示例：</p>
-<p><img src="/2019/01/21/study-javascript-key-word-this/3.png" alt="对象中的this"></p>
-<p>&emsp;&emsp;在这个示例中，我们如约(符合我们逻辑的)看到了<strong>this</strong>指向了该对象，并从中打印出来了我们想要的结果。那是因为我们赋予了<strong>foo</strong>一个上下文，我们将<strong>foo</strong>的引用赋给了<strong>obj.foo</strong>，也就是obj包含了一个foo的引用关系，当我们调用<strong>obj.foo</strong>时，即是使用了obj的引用关系调用了<strong>foo</strong>，那这个关系既是其上下文，<strong>this</strong>即会绑定到了该上下文<strong>obj</strong>对象上。</p>
-<p>&emsp;&emsp;但，程序是有魔力的（手动滑稽），有时候就是这么奇特：P，我们接下来看下面的例子:</p>
-<p><img src="/2019/01/21/study-javascript-key-word-this/3.1.png" alt="对象中的this"></p>
-<p>&emsp;&emsp;这特么是什么鬼？外面套个<strong>setTimeout</strong>会影响<strong>this</strong>的指向吗？其实，这里就有一个细节需要我们仔细的思考了。在<strong>setTimeout</strong>中，我们<strong>是将obj.foo当做了setTimeout的第一个参数传递给了setTiemout方法</strong>,其内部实现的道理类似如下方式：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setTimeout</span>(<span class="params"> fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// -- delay some times</span></span><br><span class="line">  fn()  <span class="comment">// resolve fn</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;我们可以看到<strong>fn</strong>的调用关系，因此，我们知道了一件事：<strong>直接调用回调函数的话，this会丢失</strong>！当然这种看似不确定容易丢失的方式是可以稳定下来的。</p>
-<h3 id="使用call-和apply-以及bind-来绑定this"><a href="#使用call-和apply-以及bind-来绑定this" class="headerlink" title="使用call()和apply()以及bind()来绑定this"></a>使用call()和apply()以及bind()来绑定this</h3><p>&emsp;&emsp;<strong>call</strong>和<strong>apply</strong>的绑定结果是没有区别的，唯一区别在他们的参数上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log( <span class="keyword">this</span>.bar )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  bar: <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="number">20</span></span><br><span class="line"></span><br><span class="line">foo.call(obj) <span class="comment">// 10</span></span><br><span class="line">foo.apply(obj) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure></p>
-<p>&emsp;&emsp;所以，我们可以通过这种方式来修复 <strong>setTimeout</strong>的问题</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> baz = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  foo.call(obj)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(baz) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;我们在ES5中包含了一种绑定方式，即：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;因此，上面的绑定方式我们也可以这样来固定住<strong>this</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> baz = foo.bind(obj) </span><br><span class="line">baz() <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>关于this，有太多细节可以讨论和记录，泡面暂时就先记录这么多吧，如果再有一些需要总结，就再开一篇~</p>
-</blockquote>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/01/21/study-javascript-key-word-this/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
