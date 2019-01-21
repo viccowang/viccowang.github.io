@@ -142,27 +142,30 @@
 
 
 
-  <meta name="description" content="&amp;emsp;&amp;emsp;都9102年了，又不经意的过去了一千年，回想8102年，真实感慨良多。不知道为什么，最近很喜欢听钢琴曲和大提琴，尤其是夜深人静独处的时候，总爱用手机放一首肖邦的夜曲Nocturne op. 9 no 1 Bb min，亦或者是巴赫的G大调 Cello Suite No. 1 in G Major, BWV 1007, 然后不停的循环，循环，再循环，一直到睡意降临。">
-<meta name="keywords" content="过去,生活,日记">
+  <meta name="description" content="&amp;emsp;&amp;emsp;其实每一个Javascript开发人员都不敢百分之百的保证自己对this这个东西有多么深入的了解，就好比泡面自己，用在其中，却经常容易迷失在其中。 this并不指向自身&amp;emsp;&amp;emsp;我们先来看一个简单的示例：  &amp;emsp;&amp;emsp;这个简单的示例我们可以总结出以下事情：  this是在调用时所处的环境确定的； this的指向跟调用栈有很大关系，我们是在全局环境">
+<meta name="keywords" content="javascript,this">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在2019年的早些时候，追忆一下过去的2018">
-<meta property="og:url" content="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/index.html">
+<meta property="og:title" content="再次学习Javascript的this">
+<meta property="og:url" content="http://viccowang.github.io/2019/01/21/study-javascript-key-word-this/index.html">
 <meta property="og:site_name" content="Vicco&#39;s Blog">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;都9102年了，又不经意的过去了一千年，回想8102年，真实感慨良多。不知道为什么，最近很喜欢听钢琴曲和大提琴，尤其是夜深人静独处的时候，总爱用手机放一首肖邦的夜曲Nocturne op. 9 no 1 Bb min，亦或者是巴赫的G大调 Cello Suite No. 1 in G Major, BWV 1007, 然后不停的循环，循环，再循环，一直到睡意降临。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;其实每一个Javascript开发人员都不敢百分之百的保证自己对this这个东西有多么深入的了解，就好比泡面自己，用在其中，却经常容易迷失在其中。 this并不指向自身&amp;emsp;&amp;emsp;我们先来看一个简单的示例：  &amp;emsp;&amp;emsp;这个简单的示例我们可以总结出以下事情：  this是在调用时所处的环境确定的； this的指向跟调用栈有很大关系，我们是在全局环境">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/logo.jpg">
-<meta property="og:updated_time" content="2019-01-05T15:59:24.000Z">
+<meta property="og:image" content="http://viccowang.github.io/2019/01/21/study-javascript-key-word-this/1.png">
+<meta property="og:image" content="http://viccowang.github.io/2019/01/21/study-javascript-key-word-this/2.png">
+<meta property="og:image" content="http://viccowang.github.io/2019/01/21/study-javascript-key-word-this/3.png">
+<meta property="og:image" content="http://viccowang.github.io/2019/01/21/study-javascript-key-word-this/3.1.png">
+<meta property="og:updated_time" content="2019-01-21T06:02:45.350Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在2019年的早些时候，追忆一下过去的2018">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;都9102年了，又不经意的过去了一千年，回想8102年，真实感慨良多。不知道为什么，最近很喜欢听钢琴曲和大提琴，尤其是夜深人静独处的时候，总爱用手机放一首肖邦的夜曲Nocturne op. 9 no 1 Bb min，亦或者是巴赫的G大调 Cello Suite No. 1 in G Major, BWV 1007, 然后不停的循环，循环，再循环，一直到睡意降临。">
-<meta name="twitter:image" content="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/logo.jpg">
+<meta name="twitter:title" content="再次学习Javascript的this">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;其实每一个Javascript开发人员都不敢百分之百的保证自己对this这个东西有多么深入的了解，就好比泡面自己，用在其中，却经常容易迷失在其中。 this并不指向自身&amp;emsp;&amp;emsp;我们先来看一个简单的示例：  &amp;emsp;&amp;emsp;这个简单的示例我们可以总结出以下事情：  this是在调用时所处的环境确定的； this的指向跟调用栈有很大关系，我们是在全局环境">
+<meta name="twitter:image" content="http://viccowang.github.io/2019/01/21/study-javascript-key-word-this/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/">
+  <link rel="canonical" href="http://viccowang.github.io/2019/01/21/study-javascript-key-word-this/">
 
 
 
@@ -172,7 +175,7 @@
   };
 </script>
 
-  <title>在2019年的早些时候，追忆一下过去的2018 | Vicco's Blog</title>
+  <title>再次学习Javascript的this | Vicco's Blog</title>
   
 
 
@@ -385,7 +388,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://viccowang.github.io/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/">
+    <link itemprop="mainEntityOfPage" href="http://viccowang.github.io/2019/01/21/study-javascript-key-word-this/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Vicco Wang">
@@ -402,7 +405,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">在2019年的早些时候，追忆一下过去的2018
+          <h1 class="post-title" itemprop="name headline">再次学习Javascript的this
 
               
             
@@ -428,7 +431,7 @@
                 
               
 
-              <time title="创建时间：2019-01-05 23:20:06" itemprop="dateCreated datePublished" datetime="2019-01-05T23:20:06+08:00">2019-01-05</time>
+              <time title="创建时间：2019-01-21 10:43:12" itemprop="dateCreated datePublished" datetime="2019-01-21T10:43:12+08:00">2019-01-21</time>
             
 
             
@@ -446,7 +449,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/关于生活/" itemprop="url" rel="index"><span itemprop="name">关于生活</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/web前端/" itemprop="url" rel="index"><span itemprop="name">web前端</span></a></span>
 
                 
                 
@@ -461,8 +464,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/" itemprop="commentCount"></span>
+                <a href="/2019/01/21/study-javascript-key-word-this/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/21/study-javascript-key-word-this/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -470,7 +473,7 @@
 
           
           
-            <span id="/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/" class="leancloud_visitors" data-flag-title="在2019年的早些时候，追忆一下过去的2018">
+            <span id="/2019/01/21/study-javascript-key-word-this/" class="leancloud_visitors" data-flag-title="再次学习Javascript的this">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -501,23 +504,37 @@
       
 
       
-        <p><img src="/2019/01/05/for-my-2018-write-sth-in-2019-at-the-beginning/logo.jpg" alt="2019"></p>
-<p>&emsp;&emsp;都9102年了，又不经意的过去了一千年，回想8102年，真实感慨良多。不知道为什么，最近很喜欢听钢琴曲和大提琴，尤其是夜深人静独处的时候，总爱用手机放一首肖邦的夜曲<code>Nocturne op. 9 no 1 Bb min</code>，亦或者是巴赫的G大调 <code>Cello Suite No. 1 in G Major, BWV 1007</code>, 然后不停的循环，循环，再循环，一直到睡意降临。</p>
-<a id="more"></a>
-<h3 id="对于工作"><a href="#对于工作" class="headerlink" title="对于工作"></a>对于工作</h3><p>&emsp;&emsp;对于去年的工作来说，似乎没什么特别快速的进展。要说技术进步，我觉得还是在大厂呆着进步会快得多。本来前年年末为公司把<code>Angular</code>框架收拾完成后学习<code>React</code>，但没想到公司需要对前端进行转型。我又神不知鬼不觉的为公司考虑,说到其实 公司应该尽快完成前后端分离的工作, 结果就是自己要重新根据业务情况搭一套东西出来,用于满足我提到的前后端分离的需求.(其实,到年末来看,分离的并不彻底, 主要就是…人手不够)…</p>
-<p>&emsp;&emsp;最后,考虑到后期会有一众前端或者后端人员来参与前端工作（人手不够，后端来凑不是常有的事儿吗？），所以选型了<code>VueJS</code>. 最重要就是学的快,上手快.</p>
-<p>&emsp;&emsp;后面因为项目多,所以为公司搭建了一个不是很完整,细节处理也不好,但可以适用大部分业务场景的一套框架.<a href="https://github.com/viccowang/zhx-vue-platform" target="_blank" rel="noopener">点这里可以跳转查看</a>, 文档没有上传,实在是懒.</p>
-<p>&emsp;&emsp;再到后面,就是往复这样那样的项目,其中又做了一套基于微信小程序的项目.不过后面又交给前端其他同学做了.自己又回到了一个公司认为的核心产品上.</p>
-<p>&emsp;&emsp;自己有时候回去点吧点吧2018年的工作文件夹,看到的全都是各种各样的项目文件,文档.唯一做了点技术性工作的也就是上面那套框架以及其中的一些组件开发. 在自己目前看来, 实在不值一提. 其实去年有学习<code>swift</code>, 但只学了皮毛. 后面再没做过什么功课了.</p>
-<h3 id="对于生活"><a href="#对于生活" class="headerlink" title="对于生活"></a>对于生活</h3><p>&emsp;&emsp;按部就班? 其实今年年末大家貌似人心惶惶的看着各大厂在裁员. 我等小厂似乎并没有受到什么波及. 不过怎么说? 程序员这一行, 实力碾压一切, 如果你再拥有点情商, 那还怕被裁掉吗? 不过话说胡来, 这两点我似乎都不占, 哈哈哈! 要不也不会在这里自言自语了.<br>&emsp;&emsp;去了一些地方, 认识了一些朋友.</p>
-<h3 id="9102年会怎么样"><a href="#9102年会怎么样" class="headerlink" title="9102年会怎么样?"></a>9102年会怎么样?</h3><p>&emsp;&emsp;我最近喜欢上了<code>Youtube</code>上的一个专栏, 链接我就不写了,有兴趣的可以去搜 <strong>KUAIZERO</strong>, 不知道为什么,很喜欢他俩夫妻的这个节目. 说了半天也没说今年怎么样? - -! 其实我并不想像网上天天晒各种2019年计划的人一样,列一堆TODO LIST. 不过今年我感觉有几个重要的,自律性的东西想去做.</p>
-<ul>
-<li>减少手机依赖, 基本告别朋友圈(微信), 实在是浪费时间啊.</li>
-<li>做一些技术拓展 (非前端的)</li>
-<li>去年没看完的书今年需要补回来</li>
-<li>不论今年是否换地方, 希望一切回归正常. 做好自己该做的事情</li>
-<li>一切归零, 从头开始.</li>
-</ul>
+        <p>&emsp;&emsp;其实每一个Javascript开发人员都不敢百分之百的保证自己对<strong>this</strong>这个东西有多么深入的了解，就好比泡面自己，用在其中，<br>却经常容易迷失在其中。</p>
+<h3 id="this并不指向自身"><a href="#this并不指向自身" class="headerlink" title="this并不指向自身"></a>this并不指向自身</h3><p>&emsp;&emsp;我们先来看一个简单的示例：</p>
+<p><img src="/2019/01/21/study-javascript-key-word-this/1.png" alt="about this"></p>
+<p>&emsp;&emsp;这个简单的示例我们可以总结出以下事情：</p>
+<ol>
+<li><strong>this</strong>是在调用时所处的环境确定的；</li>
+<li><strong>this</strong>的指向跟调用栈有很大关系，我们是在全局环境下通过最普通的方式调用了<strong>foo</strong>，而在调用栈中，全局<strong>Global</strong>环境永远是第一个被压入栈中,所以我们<strong>foo</strong>中的<strong>this</strong>指向了全局环境(Window)。我们通过下面的图即可看出来:</li>
+</ol>
+<p><img src="/2019/01/21/study-javascript-key-word-this/2.png" alt="GlobalScope在最底下"></p>
+<blockquote>
+<p>不过，我们需要注意一点，这段代码是运行在兼容模式下，如果你在代码中加入了<strong>严格模式</strong>，则<strong>this.bar</strong>会指向<strong>undefined</strong></p>
+</blockquote>
+<p>&emsp;&emsp;</p>
+<h3 id="对象中的this"><a href="#对象中的this" class="headerlink" title="对象中的this"></a>对象中的this</h3><p>&emsp;&emsp;我们先来看一个函数在对象中做属性的示例：</p>
+<p><img src="/2019/01/21/study-javascript-key-word-this/3.png" alt="对象中的this"></p>
+<p>&emsp;&emsp;在这个示例中，我们如约(符合我们逻辑的)看到了<strong>this</strong>指向了该对象，并从中打印出来了我们想要的结果。那是因为我们赋予了<strong>foo</strong>一个上下文，我们将<strong>foo</strong>的引用赋给了<strong>obj.foo</strong>，也就是obj包含了一个foo的引用关系，当我们调用<strong>obj.foo</strong>时，即是使用了obj的引用关系调用了<strong>foo</strong>，那这个关系既是其上下文，<strong>this</strong>即会绑定到了该上下文<strong>obj</strong>对象上。</p>
+<p>&emsp;&emsp;但，程序是有魔力的（手动滑稽），有时候就是这么奇特：P，我们接下来看下面的例子:</p>
+<p><img src="/2019/01/21/study-javascript-key-word-this/3.1.png" alt="对象中的this"></p>
+<p>&emsp;&emsp;这特么是什么鬼？外面套个<strong>setTimeout</strong>会影响<strong>this</strong>的指向吗？其实，这里就有一个细节需要我们仔细的思考了。在<strong>setTimeout</strong>中，我们<strong>是将obj.foo当做了setTimeout的第一个参数传递给了setTiemout方法</strong>,其内部实现的道理类似如下方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 伪代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setTimeout</span>(<span class="params"> fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// -- delay some times</span></span><br><span class="line">  fn()  <span class="comment">// resolve fn</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们可以看到<strong>fn</strong>的调用关系，因此，我们知道了一件事：<strong>直接调用回调函数的话，this会丢失</strong>！当然这种看似不确定容易丢失的方式是可以稳定下来的。</p>
+<h3 id="使用call-和apply-以及bind-来绑定this"><a href="#使用call-和apply-以及bind-来绑定this" class="headerlink" title="使用call()和apply()以及bind()来绑定this"></a>使用call()和apply()以及bind()来绑定this</h3><p>&emsp;&emsp;<strong>call</strong>和<strong>apply</strong>的绑定结果是没有区别的，唯一区别在他们的参数上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log( <span class="keyword">this</span>.bar )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  bar: <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="number">20</span></span><br><span class="line"></span><br><span class="line">foo.call(obj) <span class="comment">// 10</span></span><br><span class="line">foo.apply(obj) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;所以，我们可以通过这种方式来修复 <strong>setTimeout</strong>的问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> baz = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  foo.call(obj)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(baz) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们在ES5中包含了一种绑定方式，即：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;因此，上面的绑定方式我们也可以这样来固定住<strong>this</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> baz = foo.bind(obj) </span><br><span class="line">baz() <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于this，有太多细节可以讨论和记录，泡面暂时就先记录这么多吧，如果再有一些需要总结，就再开一篇~</p>
+</blockquote>
 
       
     </div>
@@ -541,11 +558,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/过去/" rel="tag"># 过去</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
           
-            <a href="/tags/生活/" rel="tag"># 生活</a>
-          
-            <a href="/tags/日记/" rel="tag"># 日记</a>
+            <a href="/tags/this/" rel="tag"># this</a>
           
         </div>
       
@@ -558,8 +573,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/01/study-javascript-prototype-chain/" rel="next" title="复习Javascript原型链">
-                <i class="fa fa-chevron-left"></i> 复习Javascript原型链
+              <a href="/2019/01/07/vue-cli-update-to-webpack4-from-webpack3-x/" rel="next" title="Vue项目从webpack3.x升级webpack4完全指南">
+                <i class="fa fa-chevron-left"></i> Vue项目从webpack3.x升级webpack4完全指南
               </a>
             
           </div>
@@ -567,10 +582,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/06/the-bumblebee-2019-movie-review/" rel="prev" title="其实我更喜欢有点金属味道的《大黄蜂》">
-                其实我更喜欢有点金属味道的《大黄蜂》 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -804,7 +815,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#对于工作"><span class="nav-number">1.</span> <span class="nav-text">对于工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于生活"><span class="nav-number">2.</span> <span class="nav-text">对于生活</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9102年会怎么样"><span class="nav-number">3.</span> <span class="nav-text">9102年会怎么样?</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#this并不指向自身"><span class="nav-number">1.</span> <span class="nav-text">this并不指向自身</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象中的this"><span class="nav-number">2.</span> <span class="nav-text">对象中的this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用call-和apply-以及bind-来绑定this"><span class="nav-number">3.</span> <span class="nav-text">使用call()和apply()以及bind()来绑定this</span></a></li></ol></div>
             
 
           </div>
